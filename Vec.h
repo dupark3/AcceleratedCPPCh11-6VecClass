@@ -22,17 +22,22 @@ public:
     T& operator[](size_t i) { return data[i]; }
     const T& operator[](size_type i) const { return data[i]; }
     
-    size() const { return limit - data; }
+    size() const { return avail - data; }
     iterator begin() { return data; }
     const_iterator begin() const { return data; }
-    iterator end() { return limit; }
-    const_iterator end() const { return limit; }
+    iterator end() { return avail; }
+    const_iterator end() const { return avail; }
 
-
+    void push_back(const T& val) { 
+        if (avail == limit)
+            grow();
+        unchecked_append(val); 
+    }
 
 private:
     iterator data; // points to the first element
-    iterator limit; // points to (one past) the last element
+    iterator avail; // points to one past the last element
+    iterator limit; // points to one past the last allocated element when grow() allocates twice the memory
 };
 
 #endif
