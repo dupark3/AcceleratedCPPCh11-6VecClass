@@ -15,7 +15,7 @@ public:
     // constructors
     Vec() { create(); }  // default constructor, called by Vec<int> v;
     explicit Vec(size_t n, const T& val = T()) { create(n, val); } // constructor takes size_t and/or const T (default argument value initialized)
-    Vec(const Vec& v) { } // copy constructor
+    Vec(const Vec& v) { create(v.begin(), v.end()); } // copy constructor
     
     // operator[] index accessor
     T& operator[](size_t i) { return data[i]; }
