@@ -16,7 +16,8 @@ public:
     Vec() { create(); }  // default constructor
     explicit Vec(size_t n, const T& val = T()) { create(n, val); } // argument constructor
     Vec(const Vec& v) { create(v.begin(), v.end()); } // copy constructor
-    
+    ~Vec() { uncreate(); } // destructor
+
     Vec& operator=(const Vec&) { }
     T& operator[](size_t i) { return data[i]; }
     const T& operator[](size_type i) const { return data[i]; }
