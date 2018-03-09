@@ -1,3 +1,4 @@
+#include "Vec.h"
 
 template <class T>
 Vec<T>& Vec<T>::operator=(const Vec& rhs){
@@ -39,7 +40,7 @@ void Vec<T>::uncreate(){
             alloc.destroy(--it);
 
         // return all the sapce that was allocated
-        alloc.deallocate(data, limit - data);    
+        alloc.deallocate(data, limit - data);
     }
     // reset pointed to indicate that the Vec is empty again
     data = avail = limit = 0;
@@ -52,7 +53,7 @@ void Vec<T>::grow(){
 
     // allocate new space and copy existing elements to the new space
     iterator new_data = alloc.allocate(new_size);
-    iterator new_avail = avail = std::uninitalized_copy(data, avail, new_data);
+    iterator new_avail = avail = std::uninitialized_copy(data, avail, new_data);
 
     // return old space
     uncreate();
@@ -63,6 +64,7 @@ void Vec<T>::grow(){
     limit = data + new_size;
 }
 
+// assumes avail points to allocated, uninitialized space, since grow is called if this is not true
 template <class T>
 void Vec<T>::unchecked_append(const T& val){
     alloc.construct(avail++, val);
