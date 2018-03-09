@@ -51,7 +51,7 @@ private:
 
     // support functions for push_back
     void grow();
-    void unchecked_append(const T&);
+    void unchecked_append(const T&); 
 };
 
 #endif
