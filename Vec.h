@@ -12,7 +12,6 @@ public:
     typedef T& reference;
     typedef const T& const_reference;
 
-    // constructors
     Vec() { create(); }  // default constructor
     explicit Vec(size_t n, const T& val = T()) { create(n, val); } // argument constructor
     Vec(const Vec& v) { create(v.begin(), v.end()); } // copy constructor
@@ -38,6 +37,21 @@ private:
     iterator data; // points to the first element
     iterator avail; // points to one past the last element
     iterator limit; // points to one past the last allocated element when grow() allocates twice the memory
+
+    // facilities for memoery allocation
+    allocator<T> alloc; // object to handle memeory allocation
+
+    // allocate and initialize the underlying array 
+    void create();
+    void create(size_type, const T&);
+    void create(const_iterator, const_iterator);
+
+    // destroy the elements in the array and free the memery
+    void uncreate();
+
+    // support functions for push_back
+    void grow();
+    void unchecked_append(const T&);
 };
 
 #endif
