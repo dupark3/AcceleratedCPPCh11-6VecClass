@@ -6,7 +6,10 @@ int main()
 {
     Vec<double> defaultVec;
     defaultVec.push_back(1.55);
-
+    defaultVec.push_back(2.55);
+    defaultVec.push_back(3.55);
+    defaultVec.push_back(4.55);
+    defaultVec.push_back(5.55);
     Vec<double> argumentVec(5, 3.14);
 
     Vec<double> copyVec(argumentVec);
@@ -14,7 +17,8 @@ int main()
     Vec<double> assignmentVec;
     assignmentVec = defaultVec;
 
-
+    defaultVec.erase(defaultVec.begin() + 2);
+    
     for (size_t i = 0; i != defaultVec.size(); ++i)
         std::cout << defaultVec[i] << " ";
     std::cout << std::endl;
