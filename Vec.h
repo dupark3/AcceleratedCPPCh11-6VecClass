@@ -37,6 +37,24 @@ public:
         unchecked_append(val);
     }
 
+    void erase(iterator it){
+        while (it != (avail - 1)){
+            *it = *(it + 1);
+            ++it;
+        }
+        alloc.destroy(it);
+        --avail;
+    }
+
+    void clear(){
+        if (data){
+            iterator it = avail;
+            while (it != data)
+                alloc.destroy(--it);
+        }
+        avail = data;
+    }
+
 private:
     iterator data; // points to the first element
     iterator avail; // points to one past the last element

@@ -18,6 +18,7 @@ int main()
     assignmentVec = defaultVec;
 
     defaultVec.erase(defaultVec.begin() + 2);
+    copyVec.clear();
     
     for (size_t i = 0; i != defaultVec.size(); ++i)
         std::cout << defaultVec[i] << " ";
